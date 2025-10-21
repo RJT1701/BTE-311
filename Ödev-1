@@ -1,2 +1,89 @@
-# BTE-311
-BTE-311
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Form Testi</title>
+</head>
+<head>
+  <meta charset="utf-8">
+  <title>Form Testi</title>
+  <style>
+    form {
+      margin: 20px;
+    }
+
+    fieldset {
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+
+    input, select, textarea {
+      margin-top: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Düzey Belirleme Testi</h1>
+
+  <form method="post" action="/submit" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Kişisel Bilgiler</legend>
+      <label>İsim: <input type="text" name="İsminiz" required></label><br>
+      <label>Email: <input type="email" name="email" required></label><br>
+      <label>Öğrenci Numarası <input type=name="Öğrenci Numarası" minlength="6"></label><br>
+      <label>Telefon: <input type="tel" name="telefon"></label><br>
+    </fieldset>
+ <fieldset>
+    <legend>Bilişim Teknolojileri - Kısa Test</legend>
+
+    <!-- 1. Boşluk doldurma -->
+    <div>
+      <label for="q1">1) Bilgisayarın geçici belleğine _______________ denir. (Tek kelime)</label><br>
+      <input id="q1" name="q1" type="text" required maxlength="40" placeholder="Cevabınızı yazın">
+    </div>
+
+    <hr>
+
+    <!-- 2. Çoktan seçmeli -->
+    <div>
+      <p>2) Aşağıdakilerden hangisi bir programlama dili değildir?</p>
+      <label><input type="radio" name="q2" value="html" required> A) HTML</label><br>
+      <label><input type="radio" name="q2" value="python"> B) Python</label><br>
+      <label><input type="radio" name="q2" value="java"> C) Java</label><br>
+      <label><input type="radio" name="q2" value="csharp"> D) C#</label>
+    </div>
+
+    <hr>
+
+    <!-- 3. Çoktan seçmeli -->
+    <div>
+      <p>3) Bir ağda IP adreslerini otomatik atamak için kullanılan protokol hangisidir?</p>
+      <label><input type="radio" name="q3" value="dns" required> A) DNS</label><br>
+      <label><input type="radio" name="q3" value="dhcp"> B) DHCP</label><br>
+      <label><input type="radio" name="q3" value="http"> C) HTTP</label><br>
+      <label><input type="radio" name="q3" value="ftp"> D) FTP</label>
+    </div>
+
+    <div style="margin-top:12px">
+      <button type="submit">Cevapları Kaydet</button>
+      <button type="reset">Sıfırla</button>
+    </div>
+  </fieldset>
+   
+    <fieldset>
+      <legend>GeriBildirim Kanalı</legend>
+      <label>Mesaj:<br><textarea name="mesaj" rows="3" cols="30"></textarea></label><br>
+      <input type="hidden" name="gizli" value="test123">
+      <legend>Hazırlayan=Rojhat Taş<legend>
+    </fieldset>
+
+    <button type="submit">Gönder</button>
+    <button type="reset">Temizle</button>
+  </form>
+</body>
+</html>
