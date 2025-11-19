@@ -1,8 +1,465 @@
-<title>    </title>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rojhat Taş | Kişisel Portföy ve Ödevler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4CAF50; /* Ana vurgu rengi (Canlı yeşil) */
+            --secondary-color: #2196F3; /* İkincil vurgu rengi (Mavi) */
+            --text-color-dark: #333;
+            --text-color-light: #fff;
+            --bg-light: #f4f7f6;
+            --bg-dark: #2c3e50; /* Koyu arka plan */
+            --card-bg: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.2);
+        }
 
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Yatay kaydırmayı engelle */
+        }
+
+        /* Başlık Alanı */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #388e3c 100%);
+            color: var(--text-color-light);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before { /* Arka plan deseni veya efekti */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="5" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5em;
+            margin: 0;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px var(--shadow-medium);
+        }
+
+        header p {
+            font-size: 1.3em;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Ana İçerik Alanı */
+        main {
+            flex-grow: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* Ödevler Kartları */
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .assignment-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-light);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px var(--shadow-medium);
+        }
+
+        .assignment-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            color: var(--text-color-dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .assignment-card .card-icon {
+            font-size: 3em; /* Icon boyutu */
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .assignment-card a {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color-light);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .assignment-card a:hover {
+            background-color: #1976d2; /* Daha koyu mavi */
+        }
+
+        /* Haftalık Özet Kartı */
+        .weekly-summary {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-light);
+            padding: 30px;
+            margin-top: 50px;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .weekly-summary h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            color: var(--text-color-dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .weekly-summary p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .weekly-summary a {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .weekly-summary a:hover {
+            background-color: #388e3c; /* Daha koyu yeşil */
+        }
+
+        /* Alt Bilgi */
+        footer {
+            background-color: var(--bg-dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        /* Scroll-to-top butonu */
+        #scrollToTopBtn {
+            display: none; /* Varsayılan olarak gizli */
+            position: fixed; /* Sabit pozisyonda */
+            bottom: 30px; /* Alttan boşluk */
+            right: 30px; /* Sağdan boşluk */
+            z-index: 99; /* Diğer elementlerin üzerinde */
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 50%; /* Yuvarlak buton */
+            font-size: 18px;
+            box-shadow: 0 4px 10px var(--shadow-medium);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #388e3c;
+            transform: translateY(-3px);
+        }
+
+        /* Duyuru banner'ı (isteğe bağlı) */
+        .announcement-banner {
+            background-color: #ffeb3b; /* Sarı renk */
+            color: #333;
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky; /* Sayfayla birlikte yukarı kayar */
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Dark Mode (JavaScript ile tetiklenir) */
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-color-light);
+        }
+        body.dark-mode .section-title {
+            color: var(--primary-color);
+        }
+        body.dark-mode .assignment-card,
+        body.dark-mode .weekly-summary {
+            background-color: #34495e;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        body.dark-mode .assignment-card h3,
+        body.dark-mode .weekly-summary h3 {
+            color: var(--text-color-light);
+        }
+        body.dark-mode .assignment-card a,
+        body.dark-mode .weekly-summary a {
+             color: var(--text-color-light);
+        }
+        body.dark-mode .weekly-summary p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        body.dark-mode .announcement-banner {
+            background-color: #fdd835;
+        }
+
+
+        /* Dark Mode Toggle Butonu */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 101;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px var(--shadow-light);
+            font-size: 0.9em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .dark-mode-toggle:hover {
+            background-color: rgba(240, 240, 240, 0.9);
+        }
+        body.dark-mode .dark-mode-toggle {
+            background-color: rgba(52, 73, 94, 0.9);
+            color: var(--text-color-light);
+            border-color: #555;
+        }
+        body.dark-mode .dark-mode-toggle:hover {
+            background-color: rgba(44, 62, 80, 0.9);
+        }
+
+        /* Font Awesome ikonları için (opsiyonel) */
+        .fa {
+            font-family: 'Font Awesome 5 Free'; /* Eğer Font Awesome kullanılıyorsa */
+            font-weight: 900;
+            margin-right: 5px;
+        }
+
+        /* Mobil Duyarlılık */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 15px;
+            }
+            header h1 {
+                font-size: 2.5em;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+            .assignments-grid {
+                grid-template-columns: 1fr; /* Tek sütunlu düzen */
+            }
+            .assignment-card {
+                padding: 25px;
+            }
+            .weekly-summary {
+                padding: 25px;
+            }
+            .dark-mode-toggle {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
 <body>
 
+    <div class="announcement-banner">
+        <i class="fas fa-bullhorn"></i> Yeni ödevler eklendi! Son teslim tarihi: 15 Mayıs!
+    </div>
 
-  Merhaba
-  <a href="Ödevler.html"> form ödevi</a>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i> Koyu Tema
+    </button>
+
+    <header>
+        <h1>Rojhat Taş</h1>
+        <p>Merhaba! Ödevlerim ve projelerim burada.</p>
+    </header>
+
+    <main>
+        <section class="assignments-section">
+            <h2 class="section-title">Ödevlerim</h2>
+            <div class="assignments-grid">
+                <div class="assignment-card">
+                    <div class="card-icon"><i class="fas fa-file-code"></i></div>
+                    <h3>Ödev 1</h3>
+                    <p>Temel HTML ve CSS uygulama ödevi.</p>
+                    <a href="Ödev-1.html">Ödeve Git</a>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="card-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Ödev 2</h3>
+                    <p>CSS ile sayfa tasarımı ve düzeni ödevi.</p>
+                    <a href="Ödev-2.html">Ödeve Git</a>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Ödev 3</h3>
+                    <p>JavaScript ile interaktif özellikler ödevi.</p>
+                    <a href="ödev-3.html">Ödeve Git</a>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="card-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Hafta 9</h3>
+                    <p>Haftalık projeler ve notlar.</p>
+                    <a href="hafta9.html">Detayları Gör</a>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Proje Ödevi</h3>
+                    <p>Dönem projesi için planlama ve ilerleme.</p>
+                    <a href="proje-odevi.html">Projeyi Görüntüle</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="weekly-summary">
+            <h3>Haftalık Özet & Duyurular</h3>
+            <p>Bu hafta yapılan çalışmaların kısa bir özeti ve önemli duyurular.</p>
+            <a href="duyurular.html">Tüm Duyurulara Git</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Rojhat Taş. Tüm Hakları Saklıdır.</p>
+        <p>Modern Web Tasarım Dersi Projesi</p>
+    </footer>
+
+    <button onclick="topFunction()" id="scrollToTopBtn" title="Yukarı Çık">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Scroll-to-top butonu için JavaScript
+        let mybutton = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        // Dark Mode Toggle JavaScript
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Sayfa yüklendiğinde daha önceki tercih var mı kontrol et
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Açık Tema';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Açık Tema';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Koyu Tema';
+            }
+        });
+    </script>
 </body>
+</html>
