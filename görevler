@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PHP Ödevi (Hafta 11-12) | Rojhat Taş</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2196F3;
+      --text-color-dark: #333;
+      --text-color-light: #fff;
+      --bg-light: #f4f7f6;
+      --card-bg: #ffffff;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-medium: rgba(0, 0, 0, 0.2);
+      --bg-dark: #2c3e50;
+    }
+
+    body{
+      font-family:'Open Sans', sans-serif;
+      margin:0; padding:0;
+      background-color:var(--bg-light);
+      color:var(--text-color-dark);
+      min-height:100vh;
+    }
+
+    header{
+      background: linear-gradient(135deg, var(--primary-color) 0%, #388e3c 100%);
+      color:var(--text-color-light);
+      padding:50px 20px;
+      text-align:center;
+      box-shadow:0 4px 15px var(--shadow-medium);
+    }
+
+    header h1{
+      font-family:'Montserrat', sans-serif;
+      margin:0;
+      font-size:2.6em;
+      letter-spacing:1px;
+    }
+
+    header p{ margin:10px 0 0; opacity:.95; }
+
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:35px 20px;
+      box-sizing:border-box;
+    }
+
+    .section-title{
+      font-family:'Montserrat', sans-serif;
+      font-size:2em;
+      color:var(--primary-color);
+      text-align:center;
+      margin-bottom:30px;
+      position:relative;
+    }
+    .section-title::after{
+      content:'';
+      position:absolute;
+      left:50%;
+      bottom:-10px;
+      transform:translateX(-50%);
+      width:80px;
+      height:4px;
+      background-color:var(--secondary-color);
+      border-radius:2px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap:25px;
+      margin-top:30px;
+    }
+
+    .card{
+      background:var(--card-bg);
+      border-radius:12px;
+      box-shadow:0 6px 20px var(--shadow-light);
+      padding:28px;
+      border-top:5px solid var(--secondary-color);
+      transition:.3s;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .card:hover{ transform:translateY(-6px); box-shadow:0 12px 25px var(--shadow-medium); }
+
+    .card h3{
+      font-family:'Montserrat', sans-serif;
+      margin:0 0 10px;
+      font-size:1.4em;
+    }
+    .meta{
+      color:#555;
+      margin:0 0 18px;
+      line-height:1.5;
+    }
+
+    .btn{
+      display:inline-block;
+      background:var(--secondary-color);
+      color:var(--text-color-light);
+      text-decoration:none;
+      padding:12px 18px;
+      border-radius:8px;
+      font-weight:bold;
+      text-align:center;
+      transition:.25s;
+    }
+    .btn:hover{ background:#1976d2; }
+
+    .btn.secondary{
+      background:var(--primary-color);
+      margin-top:10px;
+    }
+    .btn.secondary:hover{ background:#388e3c; }
+
+    .top-actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    footer{
+      background:var(--bg-dark);
+      color:rgba(255,255,255,0.75);
+      text-align:center;
+      padding:22px 20px;
+      margin-top:40px;
+      font-size:.9em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><i class="fas fa-code"></i> PHP Ödevi (Hafta 11-12)</h1>
+  <p>Görev 1 ve Görev 2 sayfalarına buradan erişebilirsin.</p>
+
+  <div class="top-actions">
+    <a class="btn secondary" href="index.html"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
+  </div>
+</header>
+
+<main>
+  <h2 class="section-title">Görevler</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3><i class="fas fa-list-ol"></i> Görev 1</h3>
+      <p class="meta">1-100 arası tek sayıları yazdıran sayfa.</p>
+      <a class="btn" href="gorev1.php">Görev 1’i Aç</a>
+    </div>
+
+    <div class="card">
+      <h3><i class="fas fa-th"></i> Görev 2</h3>
+      <p class="meta">Formdan satır/sütun alıp rastgele sayılarla tablo oluşturan sayfa.</p>
+      <a class="btn" href="gorev2.php">Görev 2’yi Aç</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; Rojhat Taş. Tüm Hakları Saklıdır.</p>
+  <p>BTE311_1_2526G - Web Tabanlı Programlama</p>
+</footer>
+
+</body>
+</html>
