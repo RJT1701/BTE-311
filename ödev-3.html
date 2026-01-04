@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
+  <meta charset="UTF-8">
+  <title>Hacettepe Dinamik Animasyonlu Banner</title>
   <style>
+    /* --- GENEL STİLLER --- */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #f4f4f4;
+      background-color: #eef1f5;
+      overflow-x: hidden;
+      perspective: 1000px; /* 3D derinlik hissi için */
+    }
+
+    h1 {
+      text-align: center;
+      color: #a22727;
+      margin-bottom: 30px;
+      font-weight: 800;
+      opacity: 0;
+      /* Esnek (yaylı) giriş animasyonu */
+      animation: bounceInDown 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     }
 
     .banner-container {
@@ -17,52 +32,114 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      border: 1px solid #ddd;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(162, 39, 39, 0.2);
     }
 
-    /* Kırmızı Düzlemi Oluşturan Kutular */
+    /* --- KIRMIZI KATMANLAR VE HAREKETLİ ANİMASYONU --- */
     .box {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: rgba(162, 39, 39, 1); /* Opaklığı artırılmış Hacettepe Kırmızısı */
+      background-color: rgba(162, 39, 39, 1);
       height: 200px;
-      border-radius: 5px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(162, 39, 39, 0.2);
+      /* Sürekli dönme ve büyüme hareketi */
+      animation: dynamicPulseRotate 5s ease-in-out infinite alternate;
     }
 
-    /* İç içe geçen katman efekti */
-    .box:nth-child(1) { width: 90%; opacity: 0.2; }
-    .box:nth-child(2) { width: 80%; opacity: 0.4; }
-    .box:nth-child(3) { width: 70%; opacity: 0.6; }
-    .box:nth-child(4) { width: 60%; opacity: 0.8; }
-    .box:nth-child(5) { width: 50%; opacity: 1; }
+    /* Farklı boyutlar, opaklıklar ve animasyon süreleri ile kaos yaratma */
+    .box:nth-child(1) { width: 95%; opacity: 0.15; animation-duration: 4.5s; }
+    /* Çift sayılar ters yöne dönsün */
+    .box:nth-child(2) { width: 85%; opacity: 0.30; animation-duration: 5.2s; animation-direction: alternate-reverse; }
+    .box:nth-child(3) { width: 75%; opacity: 0.45; animation-duration: 4.8s; }
+    .box:nth-child(4) { width: 65%; opacity: 0.65; animation-duration: 5.5s; animation-direction: alternate-reverse; }
+    .box:nth-child(5) { width: 55%; opacity: 1;    animation-duration: 5.0s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-    /* Kırmızı düzlem üzerindeki yazı */
+
+    /* --- ORTA YAZI VE DİNAMİK GİRİŞİ --- */
     .hacettepe-yazi {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      /* Başlangıç pozisyonu keyframe içinde tanımlı */
       color: white;
-      font-size: 48px;
-      font-weight: bold;
-      letter-spacing: 5px;
-      z-index: 10; /* Yazının en üstte görünmesini sağlar */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      font-size: 64px; /* Yazıyı biraz daha büyüttük */
+      font-weight: 900;
+      letter-spacing: 6px;
+      z-index: 10;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+      opacity: 0;
+      /* Dönerek büyüme animasyonu, 0.4s gecikmeli */
+      animation: spinScaleIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s both;
     }
 
+    /* --- ALT BAŞLIK VE ESNEK GİRİŞİ --- */
     .subtitle {
       text-align: center;
-      margin-top: 20px;
-      font-style: italic;
+      margin-top: 30px;
+      font-size: 18px;
       color: #555;
+      font-weight: 600;
+      opacity: 0;
+      /* Esnek (yaylı) giriş, 1.4s gecikmeli */
+      animation: bounceInUp 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1.4s both;
     }
 
-    h1 {
-      text-align: center;
-      color: #a22727;
+
+    /* --- YENİ KEYFRAME TANIMLARI --- */
+
+    /* 1. H1 için yukarıdan yaylanarak giriş */
+    @keyframes bounceInDown {
+      0% { opacity: 0; transform: translate3d(0, -100px, 0); }
+      60% { opacity: 1; transform: translate3d(0, 25px, 0); } /* Hedefi geç */
+      75% { transform: translate3d(0, -10px, 0); } /* Biraz geri çekil */
+      100% { transform: translate3d(0, 0, 0); } /* Hedefe otur */
     }
+
+    /* 2. Subtitle için aşağıdan yaylanarak giriş */
+    @keyframes bounceInUp {
+      0% { opacity: 0; transform: translate3d(0, 100px, 0); }
+      60% { opacity: 1; transform: translate3d(0, -25px, 0); }
+      75% { transform: translate3d(0, 10px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* 3. Arka plan kutuları için dönme ve büyüme */
+    /* ÖNEMLİ: translate(-50%, -50%) merkezde kalması için her adımda korunmalı */
+    @keyframes dynamicPulseRotate {
+      0% {
+        transform: translate(-50%, -50%) scale(1) rotate(-4deg);
+      }
+      100% {
+        /* Daha büyük ölçek ve ters yöne dönüş */
+        transform: translate(-50%, -50%) scale(1.12) rotate(4deg);
+      }
+    }
+
+    /* 4. Ana yazı için dönerek ve patlayarak büyüme */
+    @keyframes spinScaleIn {
+      0% {
+        opacity: 0;
+        /* Çok küçük ve ters yöne dönük başla */
+        transform: translate(-50%, -50%) scale(0.1) rotate(-30deg);
+        filter: blur(10px); /* Başlangıçta bulanıklık efekti */
+      }
+      70% {
+         opacity: 1;
+         /* Hedef boyutu biraz geç ve dön */
+         transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+         filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        /* Normal boyut ve düz açı */
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -80,7 +157,7 @@
   </div>
 
   <div class="subtitle">
-    Rojhat Taş
+    Öğretim teknolojileri ve bilişim teknolojileri eğitimi için en iyi adres.
   </div>
 
 </body>
