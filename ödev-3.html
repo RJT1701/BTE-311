@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    .banner-container {
+      position: relative;
+      height: 400px;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    /* Kırmızı Düzlemi Oluşturan Kutular */
+    .box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(162, 39, 39, 1); /* Opaklığı artırılmış Hacettepe Kırmızısı */
+      height: 200px;
+      border-radius: 5px;
+    }
+
+    /* İç içe geçen katman efekti */
+    .box:nth-child(1) { width: 90%; opacity: 0.2; }
+    .box:nth-child(2) { width: 80%; opacity: 0.4; }
+    .box:nth-child(3) { width: 70%; opacity: 0.6; }
+    .box:nth-child(4) { width: 60%; opacity: 0.8; }
+    .box:nth-child(5) { width: 50%; opacity: 1; }
+
+    /* Kırmızı düzlem üzerindeki yazı */
+    .hacettepe-yazi {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      z-index: 10; /* Yazının en üstte görünmesini sağlar */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 20px;
+      font-style: italic;
+      color: #555;
+    }
+
+    h1 {
+      text-align: center;
+      color: #a22727;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HACETTEPE BÖTE</h1>
+
+  <div class="banner-container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <div class="hacettepe-yazi">HACETTEPE</div>
+  </div>
+
+  <div class="subtitle">
+    Rojhat Taş
+  </div>
+
+</body>
+</html>
