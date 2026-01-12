@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --bg-dark: #020617;
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08), transparent 25%);
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.app-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
+.main-content { flex: 1; display: flex; justify-content: center; align-items: center; padding: 1.5rem; }
+
+.header, .footer {
+  padding: 1.5rem; text-align: center; backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border);
+}
+.footer { border-top: 1px solid var(--card-border); border-bottom: none; font-size: 0.85rem; color: var(--text-secondary); }
+.header h1 { font-weight: 700; font-size: 1.8rem; letter-spacing: -0.5px; }
+
+/* KART TASARIMI */
+.content-card {
+  width: 100%; max-width: 600px; /* Daha kompakt yaptık */
+  padding: 2.5rem;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-top: 4px solid var(--theme-color, #3b82f6); 
+  transition: border-color 0.5s ease;
+}
+
+.card-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--card-border);
+}
+.card-header h2 { font-size: 1.4rem; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+.date-badge { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 20px; color: var(--text-secondary); }
+
+/* --- YENİ DÜZEN (CONVERTER) --- */
+.converter-section { display: flex; flex-direction: column; gap: 20px; }
+
+.input-block label, .select-block label { 
+  display: block; margin-bottom: 0.6rem; color: var(--text-secondary); font-size: 0.9rem; 
+}
+
+.selection-row {
+  display: flex; align-items: flex-end; gap: 10px;
+}
+.select-block { flex: 1; }
+
+/* SWAP BUTONU */
+.swap-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  margin-bottom: 2px; /* Hizalama için */
+  transition: all 0.3s ease;
+}
+.swap-btn:hover {
+  background: var(--theme-color);
+  color: white;
+  transform: rotate(180deg);
+  border-color: var(--theme-color);
+}
+
+/* SONUÇ EKRANI */
+.result-display {
+  background: rgba(0,0,0,0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid var(--card-border);
+  margin-top: 10px;
+}
+.result-main {
+  font-size: 2.5rem; font-weight: 700; color: white;
+}
+.result-symbol { font-size: 1.5rem; color: var(--theme-color); margin-left: 5px; }
+.exchange-rate-info { margin-top: 5px; color: var(--text-secondary); font-size: 0.9rem; }
+
+/* STANDART GİRİŞLER */
+.input-wrapper {
+  position: relative; display: flex; align-items: center;
+  border-radius: 12px; background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--card-border); transition: 0.3s;
+}
+.focus-effect:focus-within { border-color: var(--theme-color); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05); }
+.input-icon { position: absolute; left: 16px; pointer-events: none; }
+.flag-icon { font-size: 1.4rem; position: absolute; left: 16px; }
+
+.modern-input, .modern-select {
+  width: 100%; padding: 16px 16px 16px 50px;
+  background: transparent; border: none; color: white;
+  font-size: 1.1rem; outline: none; font-weight: 500;
+}
+.modern-select option { background: #0f172a; color: white; padding: 10px; }
+
+/* METAL GRID */
+.rates-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 15px;
+}
+.rate-item {
+  position: relative; padding: 1.2rem; border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  display: flex; flex-direction: column; align-items: center;
+}
+.section-title {
+  font-size: 0.95rem; color: var(--text-secondary); margin: 0 0 15px 0;
+  display: flex; align-items: center; gap: 8px; font-weight: 600;
+}
+.currency-label { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 5px; }
+.currency-value { font-size: 1.1rem; font-weight: 700; }
+.icon-badge {
+  position: absolute; top: 8px; right: 8px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center;
+}
+.gold-glow { border-color: rgba(234, 179, 8, 0.2); background: linear-gradient(160deg, rgba(234, 179, 8, 0.1), rgba(0,0,0,0)); }
+.gold-text { color: #facc15; }
+.silver-glow { border-color: rgba(148, 163, 184, 0.2); background: linear-gradient(160deg, rgba(203, 213, 225, 0.1), rgba(0,0,0,0)); }
+.silver-text { color: #e2e8f0; }
+
+@media (max-width: 768px) {
+  .selection-row { flex-direction: column; align-items: center; }
+  .swap-btn { transform: rotate(90deg); margin: 10px 0; }
+  .swap-btn:hover { transform: rotate(270deg); }
+  .select-block { width: 100%; }
+}
