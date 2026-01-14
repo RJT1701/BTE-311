@@ -20,7 +20,7 @@ export default function CurrencyCard() {
   // --- AYARLAR ---
   const currencyConfig = {
     TRY: { symbol: "₺", color: "#ef4444", name: "Türk Lirası", flag: "🇹🇷" },
-    USD: { symbol: "$", color: "#3b82f6", name: "Amerikan Doları", flag: "🇺🇸" },
+    USD: { symbol: "$:", color: "#3b82f6", name: "Amerikan Doları", flag: "🇺🇸" },
     EUR: { symbol: "€", color: "#10b981", name: "Euro", flag: "🇪🇺" },
     GBP: { symbol: "£", color: "#8b5cf6", name: "Sterlin", flag: "🇬🇧" },
     JPY: { symbol: "¥", color: "#f59e0b", name: "Japon Yeni", flag: "🇯🇵" },
